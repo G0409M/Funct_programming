@@ -5,7 +5,6 @@ from matplotlib.ticker import FuncFormatter
 def plot_dataframe(df, output_path='output_plot.png'):
 
     sns.set(style="whitegrid")
-
     fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(10, 8))
 
     def format_large_numbers(value, _):
