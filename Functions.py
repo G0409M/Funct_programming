@@ -44,7 +44,7 @@ def compose(*funcs):
     return lambda initial: reduce(lambda acc, f: f(acc), reversed(funcs), initial)
 
 def filter_dataframe_by_region(dframe):
-    print("Choosing EUROPE")
+    print("Choosing Europe and America and Asia")
     filtered_df = dframe[(dframe['Region'] == 'Europe') |(dframe['Region'] == 'Americas')|(dframe['Region'] == 'Asia') ]
     return filtered_df
 
