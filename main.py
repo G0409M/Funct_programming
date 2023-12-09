@@ -38,6 +38,7 @@ for country_data in all_countries_data:
 # Utwórz DataFrame
 columns = ['Country', 'Population', 'Region', 'Subregion', 'Area', 'Capital', 'Gini']
 dframe = pd.DataFrame(country_info_list, columns=columns)
+print(dframe.to_markdown(index=False))
 print("tu jestem 1")
 result(dframe)
 print("tu jestem 2")
