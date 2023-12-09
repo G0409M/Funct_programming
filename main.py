@@ -1,6 +1,3 @@
-import requests
-import pandas as pd
-import tabulate
 from Functions import result, creating_dataframe, write_to_excel
 from Graphic import plot_dataframe
 
