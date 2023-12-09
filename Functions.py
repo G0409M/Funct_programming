@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import tabulate
 from functools import reduce
 def creating_dataframe():
     country_codes = ['PL', 'US', 'CA', 'DE', 'FR', 'GB', 'IT', 'JP', 'AU', 'BR', 'IN', 'CN', 'RU', 'ZA', 'KR', 'MX',
@@ -36,18 +35,17 @@ def get_country_data(country_code):
     return data
 def result(df):
     composed_function = compose(sort_dataframe_by_population,group_dataframe_by_subregion,filter_dataframe_by_subregion,filter_dataframe_by_region, filter_dataframe_by_letter_a)
-
     result_df = composed_function(df)
+    result_df.rename(columns={'Population': 'Summed Population', 'Area': 'Summed Area'}, inplace=True)
 
-    print(result_df.to_markdown(index=False))
+    return result_df
 
 def compose(*funcs):
     return lambda initial: reduce(lambda acc, f: f(acc), reversed(funcs), initial)
 
 def filter_dataframe_by_region(dframe):
     print("wybieranie tylko regionu EUROPE")
-    filtered_df = dframe[(dframe['Region'] == 'Europe') |(dframe['Region'] == 'Americas') ]
-    '''print(dframe.to_markdown(index=False))'''
+    filtered_df = dframe[(dframe['Region'] == 'Europe') |(dframe['Region'] == 'Americas')|(dframe['Region'] == 'Asia') ]
     return filtered_df
 
 def filter_dataframe_by_letter_a(dframe):
@@ -57,7 +55,7 @@ def filter_dataframe_by_letter_a(dframe):
     return filtered_df
 def filter_dataframe_by_subregion(dframe):
     print("wybieranie tylko państw które leżą w wschodniej lub środkowej europie lub połudiowej Ameryce")
-    filtered_df = dframe[(dframe['Subregion'] == 'Western Europe') | (dframe['Subregion'] == 'Central Europe') | (dframe['Subregion'] == 'South America') ]
+    filtered_df = dframe[(dframe['Subregion'] == 'Western Europe') | (dframe['Subregion'] == 'Central Europe') | (dframe['Subregion'] == 'South America')| (dframe['Subregion'] == 'Southern Asia')| (dframe['Subregion'] == 'South-Eastern Asia')   ]
     '''print(dframe.to_markdown(index=False))'''
     return filtered_df
 def sort_dataframe_by_population(dframe):
@@ -72,3 +70,10 @@ def group_dataframe_by_subregion(dframe):
         'Area': 'sum'
     }).reset_index()
     return grouped_df
+
+def write_to_excel(df, file_path):
+    try:
+        df.to_excel(file_path, index=False)
+        print(f"DataFrame successfully written to {file_path}")
+    except Exception as e:
+        print(f"Error writing DataFrame to Excel: {e}")
