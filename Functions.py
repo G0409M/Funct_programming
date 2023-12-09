@@ -44,22 +44,20 @@ def compose(*funcs):
     return lambda initial: reduce(lambda acc, f: f(acc), reversed(funcs), initial)
 
 def filter_dataframe_by_region(dframe):
-    print("wybieranie tylko regionu EUROPE")
+    print("Choosing EUROPE")
     filtered_df = dframe[(dframe['Region'] == 'Europe') |(dframe['Region'] == 'Americas')|(dframe['Region'] == 'Asia') ]
     return filtered_df
 
 def filter_dataframe_by_letter_a(dframe):
-    print("wybieranie tylko państw które zawierają literę a")
+    print("Choosing country with a letter ")
     filtered_df = dframe[dframe['Country'].str.lower().str.contains('a')]
-    '''print(dframe.to_markdown(index=False))'''
     return filtered_df
 def filter_dataframe_by_subregion(dframe):
-    print("wybieranie tylko państw które leżą w wschodniej lub środkowej europie lub połudiowej Ameryce")
-    filtered_df = dframe[(dframe['Subregion'] == 'Western Europe') | (dframe['Subregion'] == 'Central Europe') | (dframe['Subregion'] == 'South America')| (dframe['Subregion'] == 'Southern Asia')| (dframe['Subregion'] == 'South-Eastern Asia')   ]
-    '''print(dframe.to_markdown(index=False))'''
+    print("Choosing country from Western Europe,Central Europe , South America, Southern Asia or South-Eastern Asia ")
+    filtered_df = dframe[(dframe['Subregion'] == 'Western Europe') | (dframe['Subregion'] == 'Central Europe') | (dframe['Subregion'] == 'South America')| (dframe['Subregion'] == 'Southern Asia')| (dframe['Subregion'] == 'South-Eastern Asia')]
     return filtered_df
 def sort_dataframe_by_population(dframe):
-    print("Sortowanie danych po populacji")
+    print("Sort by population")
     sorted_df = dframe.sort_values(by='Population', ascending=False)
     return sorted_df
 def group_dataframe_by_subregion(dframe):
