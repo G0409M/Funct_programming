@@ -1,6 +1,6 @@
 from functools import reduce
 def result(df):
-    composed_function = compose(filter_dataframe_by_subregion,filter_dataframe_by_region, filter_dataframe_by_letter_a)
+    composed_function = compose(sort_dataframe_by_population,filter_dataframe_by_subregion,filter_dataframe_by_region, filter_dataframe_by_letter_a)
 
     result_df = composed_function(df)
 
@@ -25,3 +25,8 @@ def filter_dataframe_by_subregion(dframe):
     filtered_df = dframe[(dframe['Subregion'] == 'Western Europe') | (dframe['Subregion'] == 'Central Europe') | (dframe['Subregion'] == 'South America') ]
     '''print(dframe.to_markdown(index=False))'''
     return filtered_df
+def sort_dataframe_by_population(dframe):
+    print("Sortowanie danych po populacji")
+    sorted_df = dframe.sort_values(by='Population', ascending=False)
+    print(sorted_df.to_markdown(index=False))
+    return sorted_df
