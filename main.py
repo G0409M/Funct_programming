@@ -9,7 +9,8 @@ def get_country_data(country_code):
     return data
 # Lista kodów krajów (możesz dostosować listę według własnych potrzeb)
 country_codes = ['PL', 'US', 'CA', 'DE', 'FR', 'GB', 'IT', 'JP', 'AU', 'BR', 'IN', 'CN', 'RU', 'ZA', 'KR', 'MX',
-                 'ES', 'ID', 'NG', 'EG']
+                 'ES', 'ID', 'NG', 'EG', 'SA', 'AR', 'TR', 'IR', 'TH', 'IT', 'VN', 'PH', 'GB', 'FR',
+                 'EG', 'GR', 'NL', 'PT', 'BE', 'SE', 'CH', 'AT', 'NO', 'DK', 'FI', 'IE', 'CL', 'CO', 'VE', 'PE', 'MY', 'SG', 'NZ']
 
 # Inicjalizacja pustej listy do przechowywania danych krajów
 all_countries_data = []
